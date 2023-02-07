@@ -1,6 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+$nacion-color : #075CB9;
+
 body{
     margin: 0;
-    background-color: black;
+    background-color: $nacion-color;
+    font-family: 'Montserrat', sans-serif;
 }
 .App{
     height: 100vh;
