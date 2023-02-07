@@ -1,18 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-$nacion-color : #075CB9;
+//Celeste -> rgb(69 143 180)
+//Azul -> rgb(0 92 178)
 
 body{
     margin: 0;
-    background-color: $nacion-color;
     font-family: 'Montserrat', sans-serif;
-}
-.App{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    h1{
-        color: white;
-    }
 }
