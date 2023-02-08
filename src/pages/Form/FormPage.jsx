@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react'
 import './FormPage.scss'
 import logoBlanco from "../../img/logos/logoBlanco.png"
+import { getDatabase, ref, child, push, update } from "firebase/database";
+
 
 export default function FormPage(props) {
+
+  const db = getDatabase();
 
   function submit(){
     var alerta = document.getElementById("error")
@@ -13,14 +17,50 @@ export default function FormPage(props) {
     var email = document.getElementById("email").value;
     var checkbox = document.getElementById("newsletter").checked;
 
+    checkbox = checkbox === true ? "Si":"No"
+
     if(nombre == "" || provincia == "" || localidad == "" || email == ""){
       alerta.classList.remove("hide")
+    }
+    else{
+      const obj = {
+        "Nombre": nombre,
+        "Email" : email,
+        "Provincia" : provincia,
+        "Localidad" : localidad,
+        "Newsletter" : checkbox
+      }
+
+      const prevData = localStorage.getItem("data") ? localStorage.getItem("data"):""
+      localStorage.setItem("data", prevData+"$"+JSON.stringify(obj))
+
+      fbButton();
+
     }
   }
 
   function closeError(){
-    var alerta = document.getElementById("error")
-    alerta.classList.add("hide")
+    var alerta = document.getElementById("error");
+    alerta.classList.add("hide");
+  }
+
+  function pushFb(postData){
+  
+    const newPostKey = push(child(ref(db), 'posts')).key;
+  
+    const updates = {};
+    updates[newPostKey] = postData;
+  
+    update(ref(db), updates);
+  }
+
+  function fbButton(){
+    const data = localStorage.getItem("data").split("$").slice(1);
+    data.forEach(obj=>{
+      pushFb(JSON.parse(obj));
+    })
+
+    localStorage.clear();
   }
   
   return (
