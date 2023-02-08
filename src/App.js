@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import FormPage from './pages/FormPage';
+import FormPage from './pages/Form/FormPage';
 import RoulettePage from './pages/RoulettePage';
 
 function App() {

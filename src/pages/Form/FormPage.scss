@@ -1,10 +1,22 @@
+@font-face {
+    font-family: 'KievitOT';
+    src: url('../../fonts/KievitOT-Regular.otf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+  }
+
 *{
     background-color: rgb(0 92 178);
+    font-family: "KievitOT";
 }
 
 .logo{
     width: 40%;
     margin-top: 6%;
+}
+
+.hide{
+    display: none;
 }
 
 .table-container{
@@ -96,8 +108,54 @@
     border-style: none;
     padding: 1% 5%;
     margin-top: 30px;
+    font-weight: bold;
 }
 
 .enviar:active{
     background-color: rgb(54, 114, 145);
+}
+
+#error{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.684);
+
+    .box{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        background-color: rgb(182, 115, 115);
+        color: white;
+        text-align: center;
+        width: fit-content;
+        height: fit-content;
+        padding: 40px;
+        border-radius: 15px;
+    }
+
+    h3{
+        background-color: rgba(95, 158, 160, 0) !important;
+        font-size: 30px;
+        margin-top: 0;
+        padding-top: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    button{
+        font-size: 30px;
+        color: rgb(0, 0, 0);
+        background-color: rgb(255, 255, 255);
+        border-style: none;
+        padding: 1% 5%;
+        margin-top: 5%;
+        font-weight: bold;
+    }
 }
