@@ -1,0 +1,75 @@
+import React, { useEffect } from 'react'
+import './Roulette.scss'
+
+export default function Roulette(props) {
+    const colors = ["#FEA700", "#C35AF4", "#F04B1D", "#B3E544", "#10A2ED", "#0DB06D", "#E4D729", "#E93A7B"]
+    const size = (props.size[props.size.length-1] === '%' ? 
+        (Number(props.size.replace("%", ""))/100) * window.innerWidth : 
+        Number(props.size.replace("p", "").replace("x", ""))
+    );
+    const num = props.elements.length;
+
+    const triangleAngle = 360/num; //Angle in degrees
+    const triangleLength = Math.tan(Math.PI/num)*size/2;
+    const triangle = (color) =>{
+        let styles = {
+            borderTop: triangleLength+5 + "px solid transparent",
+            borderBottom: triangleLength+5 + "px solid transparent",
+            borderRight: size/2 + "px solid "+color
+        }
+        return styles
+    } 
+    const centerStyles = {
+        'center': {
+            width: size*0.2,
+            height: size*0.2
+        },
+        'triangle':{
+            borderTop: size*0.06 + 'px solid transparent',
+            borderBottom: size*0.06 + 'px solid transparent',
+            borderLeft: size*0.12 + 'px solid #005cb2',
+            left: size*0.16 + 'px'
+        }        
+    }
+    
+    function rotate(){
+        const position = Math.random()*(num-1)
+        const angle = position*(360/num)
+        function ended(element){
+            element.style.rotate = props.turns*360+angle+'deg'
+            props.handleIndex(Math.round(position))
+        }
+        document.querySelectorAll(".roulette").forEach(element =>{
+            element.animate([
+                // fotogramas clave
+                { rotate: 0+'deg' },
+                { rotate: props.turns*360+angle+'deg' }
+                ], {
+                // opciones de sincronización
+                duration: props.time*1000,
+                easing: 'ease-out',
+                iterations: 1,
+                complete: ended(element)
+                });
+        })
+    }
+        
+    return (
+        <>
+            <button className='center' style={centerStyles.center} onClick={() =>{rotate();rotate()}}><img src={props.logo} alt="" /><div className='line' style={centerStyles.triangle}></div></button>
+            <div className='shadow' style={{width : (size-20)+"px", height: (size-20)+"px"}}></div>
+            <div className='container' style={{width : size, height: size}}></div>
+            <div style={{width : size, height: size}}>
+                {props.elements.map(element => {
+                    const aux = props.elements.indexOf(element, 0)
+                    return(
+                        <div key={aux} className='roulette' style={{width : size, height: size, transform : "rotate("+(360-triangleAngle*aux)+"deg)"}}>
+                            <div className='triangle' style={triangle(colors[aux])}></div>
+                            <h1>{element}</h1>
+                        </div>
+                    )
+                })}
+            </div>
+        </>
+    )
+}

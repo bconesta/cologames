@@ -5,6 +5,13 @@
 //
 
 body{
+    overflow: hidden;
     margin: 0;
     font-family: 'Montserrat', sans-serif;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
