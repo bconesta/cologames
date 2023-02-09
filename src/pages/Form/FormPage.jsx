@@ -42,6 +42,18 @@ export default function FormPage(props) {
     alerta.classList.add("hide");
   }
 
+  let timerId = ""
+  function timeout(){
+    return new Promise(resolve => {
+      timerId = setTimeout(() => {
+        const textoUpload = document.getElementById("textUpload");
+        textoUpload.innerHTML = "Ocurrio un error, intenta de nuevo"
+        textoUpload.style.color = "rgba(162, 41, 41)"
+
+      }, 5000)
+    })
+  }
+
   function pushFb(postData){
   
     const newPostKey = push(child(ref(db), 'posts')).key;
@@ -50,17 +62,15 @@ export default function FormPage(props) {
     updates[newPostKey] = postData;
     const textoUpload = document.getElementById("textUpload");
     update(ref(db), updates).then(()=>{
-
       localStorage.clear();
       textoUpload.innerHTML = "¡Datos subidos con exito!"
       textoUpload.style.color = "rgba(167, 242, 162)"
-    }).catch((error)=>{
-      textoUpload.innerHTML = "Ocurrio un error, intenta de nuevo"
-      textoUpload.style.color = "rgba(162, 41, 41)"
+      clearTimeout(timerId)
     })
+    
   }
 
-  function fbButton(){
+  async function fbButton(){
     const passwordInput = document.getElementById("password").value;
     const password = "Nacionseguros2023"
     const textoUpload = document.getElementById("textUpload");
@@ -69,9 +79,13 @@ export default function FormPage(props) {
         data.forEach(obj=>{
           pushFb(JSON.parse(obj));
         })
+        textoUpload.innerHTML = "Subiendo datos..."
+        textoUpload.style.color = "rgba(255, 255, 255)"
+        const checkUpload = await timeout()
     }
     else{
       textoUpload.innerHTML = "Contraseña incorrecta"
+      textoUpload.style.color = "rgba(162, 41, 41)"
     }
   }
 
