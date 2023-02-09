@@ -48,32 +48,29 @@ export default function FormPage(props) {
   
     const updates = {};
     updates[newPostKey] = postData;
-  
-    update(ref(db), updates);
+    const textoUpload = document.getElementById("textUpload");
+    update(ref(db), updates).then(()=>{
+
+      localStorage.clear();
+      textoUpload.innerHTML = "¡Datos subidos con exito!"
+      textoUpload.style.color = "rgba(167, 242, 162)"
+    }).catch((error)=>{
+      textoUpload.innerHTML = "Ocurrio un error, intenta de nuevo"
+      textoUpload.style.color = "rgba(162, 41, 41)"
+    })
   }
 
   function fbButton(){
     const passwordInput = document.getElementById("password").value;
-    const textoUpload = document.getElementById("textUpload");
     const password = "Nacionseguros2023"
-
+    const textoUpload = document.getElementById("textUpload");
     if(passwordInput == password){
-      try{
         const data = localStorage.getItem("data").split("$").slice(1);
         data.forEach(obj=>{
           pushFb(JSON.parse(obj));
         })
-    
-        localStorage.clear();
-        textoUpload.innerHTML = "¡Datos subidos con exito!"
-        textoUpload.style.color = "rgba(167, 242, 162)"
-      }catch (error) {
-        textoUpload.innerHTML = "Ocurrio un error, intenta de nuevo"
-        textoUpload.style.color = "rgba(162, 41, 41)"
-      }
-
-
-    }else{
+    }
+    else{
       textoUpload.innerHTML = "Contraseña incorrecta"
     }
   }
