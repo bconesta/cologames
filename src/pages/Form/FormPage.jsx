@@ -9,6 +9,7 @@ export default function FormPage(props) {
   const db = getDatabase();
 
   function submit(){
+    console.log("ERROR")
     var alerta = document.getElementById("error")
 
     var nombre = document.getElementById("nombre").value;
@@ -33,9 +34,6 @@ export default function FormPage(props) {
 
       const prevData = localStorage.getItem("data") ? localStorage.getItem("data"):""
       localStorage.setItem("data", prevData+"$"+JSON.stringify(obj))
-
-      fbButton();
-
     }
   }
 
@@ -55,12 +53,44 @@ export default function FormPage(props) {
   }
 
   function fbButton(){
-    const data = localStorage.getItem("data").split("$").slice(1);
-    data.forEach(obj=>{
-      pushFb(JSON.parse(obj));
-    })
+    const passwordInput = document.getElementById("password").value;
+    const textoUpload = document.getElementById("textUpload");
+    const password = "Nacionseguros2023"
 
-    localStorage.clear();
+    if(passwordInput == password){
+      try{
+        const data = localStorage.getItem("data").split("$").slice(1);
+        data.forEach(obj=>{
+          pushFb(JSON.parse(obj));
+        })
+    
+        localStorage.clear();
+        textoUpload.innerHTML = "¡Datos subidos con exito!"
+        textoUpload.style.color = "rgba(167, 242, 162)"
+      }catch (error) {
+        textoUpload.innerHTML = "Ocurrio un error, intenta de nuevo"
+        textoUpload.style.color = "rgba(162, 41, 41)"
+      }
+
+
+    }else{
+      textoUpload.innerHTML = "Contraseña incorrecta"
+    }
+  }
+
+  var open = false;
+
+  function closeOpenUpload(){
+    const textoUpload = document.getElementById("textUpload");
+    textoUpload.innerHTML = ""
+    if (open == true){
+      document.getElementById("subir").classList.add("hide");
+      open = false
+    }else{
+      document.getElementById("subir").classList.remove("hide");
+      open = true
+    }
+    
   }
   
   return (
@@ -72,6 +102,19 @@ export default function FormPage(props) {
             <button onClick={closeError}>CERRAR</button>
           </div>
         </div>
+
+        <div id='subir' className='hide'>
+          <div className='box'>
+            <button onClick={closeOpenUpload} className="close">Salir</button>
+            <label htmlFor='password'>Contraseña</label>
+            <input type="text" id="password" name="password"/>
+            <button onClick={fbButton} className="upload">SUBIR DATOS</button>
+            <h2 id="textUpload"></h2>
+          </div>
+        </div>
+
+        <button onClick={closeOpenUpload} className="hidenButton"></button>
+
         <div>
           <img className="logo" src={logoBlanco}></img>
         </div>

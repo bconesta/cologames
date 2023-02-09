@@ -8,6 +8,7 @@
 *{
     background-color: rgb(0 92 178);
     font-family: "KievitOT";
+    overflow: hidden;
 }
 
 .logo{
@@ -158,4 +159,89 @@
         margin-top: 5%;
         font-weight: bold;
     }
+}
+
+#subir{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.684);
+
+    .box{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        background-color: rgb(69 143 180);
+        color: white;
+        text-align: center;
+        width: fit-content;
+        height: fit-content;
+        padding: 3%;
+        border-radius: 15px;
+    }
+
+    .close{
+        position: absolute;
+        border-radius: 30px;
+        width: fit-content;
+        height: 40px;
+        top: 20px;
+        right: 20px;
+        background-color: rgb(210, 150, 150);
+        border-style: none;
+        color: white;
+        font-size: 25px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .upload{
+        font-size: 30px;
+        color: rgb(0, 0, 0);
+        background-color: rgb(255, 255, 255);
+        border-style: none;
+        padding: 1% 5%;
+        margin-top: 10%;
+        font-weight: bold;
+    }
+
+    label{
+        background-color: rgba(95, 158, 160, 0) !important;
+        display: block;
+        text-align: center;
+        font-size: 40px;
+        margin-bottom: 20px;
+        color: white;
+        margin-top: 20px;
+    }
+
+    input{
+        background-color: white;
+        border-style: none;
+        width: 400px;
+        height: 40px;
+        font-size: 30px;
+
+    }
+
+    #textUpload{
+        background-color: rgba(162, 41, 41, 0) !important;
+    }
+
+}
+
+.hidenButton{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(255, 0, 0, 0);
+    border-style: none;
+    height: 5%;
+    width: 5%;
 }
