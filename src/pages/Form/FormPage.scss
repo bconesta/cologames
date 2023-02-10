@@ -1,0 +1,247 @@
+@font-face {
+    font-family: 'KievitOT';
+    src: url('../../fonts/KievitOT-Regular.otf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+  }
+
+*{
+    background-color: rgb(0 92 178);
+    font-family: "KievitOT";
+    overflow: hidden;
+}
+
+.logo{
+    width: 40%;
+    margin-top: 6%;
+}
+
+.hide{
+    display: none;
+}
+
+.table-container{
+    margin-top: 7%;
+    font-size: 30px;
+    color: white;
+    display: inline-flex;
+    width: 80%;
+
+    .col1{
+        width: 50%;
+    }
+
+    .col2{
+        width: 50%;
+    }
+
+    .cont{
+        padding: 20px;
+        text-align: left;
+        margin-left: 4%;
+    }
+
+    label{
+        display: block;
+        margin-bottom: 15px;
+    }
+
+    input{
+        font-size: 20px;
+        background-color: white;
+        border-style: none;
+        width: 90%;
+        height: 50px;
+        padding-left: 10px;
+        outline: none;
+    }
+
+    input:focus{
+        box-shadow: 0 0 10px rgb(4, 201, 255);
+    }
+    
+
+    select{
+        font-size: 20px;
+        background-color: white;
+        border-style: none;
+        width: 93%;
+        height: 50px;
+        padding-left: 10px;
+        outline: none;
+    }
+}
+
+.newsletter{
+    margin-top: 2%;
+    display: inline-flex;
+
+    h2{
+        font-size: 30px;
+        color: white;
+    }
+
+    input{
+        appearance: none;
+        background-color: white;
+        border-style: none;
+        border-color: rgb(69 143 180);
+        width: 30px;
+        height: 30px;
+        margin-left: 20px;
+        margin-top: 6%;
+    }
+
+    input:checked{
+        border-style: solid;
+        background-color: rgba(0, 0, 0, 0.586);
+        border-color: rgb(255, 255, 255);
+        border-width: 5px;
+    }
+
+}
+
+.enviar{
+    display: block;
+    font-size: 40px;
+    color: white;
+    background-color: rgb(69 143 180);
+    border-style: none;
+    padding: 1% 5%;
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+.enviar:active{
+    background-color: rgb(54, 114, 145);
+}
+
+#error{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.684);
+
+    .box{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        background-color: rgb(182, 115, 115);
+        color: white;
+        text-align: center;
+        width: fit-content;
+        height: fit-content;
+        padding: 40px;
+        border-radius: 15px;
+    }
+
+    h3{
+        background-color: rgba(95, 158, 160, 0) !important;
+        font-size: 30px;
+        margin-top: 0;
+        padding-top: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    button{
+        font-size: 30px;
+        color: rgb(0, 0, 0);
+        background-color: rgb(255, 255, 255);
+        border-style: none;
+        padding: 1% 5%;
+        margin-top: 5%;
+        font-weight: bold;
+    }
+}
+
+#subir{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.684);
+
+    .box{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        background-color: rgb(69 143 180);
+        color: white;
+        text-align: center;
+        width: fit-content;
+        height: fit-content;
+        padding: 3%;
+        border-radius: 15px;
+    }
+
+    .close{
+        position: absolute;
+        border-radius: 30px;
+        width: fit-content;
+        height: 40px;
+        top: 20px;
+        right: 20px;
+        background-color: rgb(210, 150, 150);
+        border-style: none;
+        color: white;
+        font-size: 25px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .upload{
+        font-size: 30px;
+        color: rgb(0, 0, 0);
+        background-color: rgb(255, 255, 255);
+        border-style: none;
+        padding: 1% 5%;
+        margin-top: 10%;
+        font-weight: bold;
+    }
+
+    label{
+        background-color: rgba(95, 158, 160, 0) !important;
+        display: block;
+        text-align: center;
+        font-size: 40px;
+        margin-bottom: 20px;
+        color: white;
+        margin-top: 20px;
+    }
+
+    input{
+        background-color: white;
+        border-style: none;
+        width: 400px;
+        height: 40px;
+        font-size: 30px;
+
+    }
+
+    #textUpload{
+        background-color: rgba(162, 41, 41, 0) !important;
+    }
+
+}
+
+.hidenButton{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(255, 0, 0, 0);
+    border-style: none;
+    height: 5%;
+    width: 5%;
+}

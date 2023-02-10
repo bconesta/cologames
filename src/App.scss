@@ -4,10 +4,17 @@
 //Azul -> rgb(0 92 178)
 //
 
+@font-face {
+    font-family: 'KievitOT';
+    src: url('./fonts/KievitOT-Regular.otf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+
 body{
     overflow: hidden;
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "KievitOT";
 }
 
 .container{
