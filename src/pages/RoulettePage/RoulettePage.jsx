@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Roulette from '../../components/Roulette'
 import './RoulettePage.scss'
 import Icono from '../../img/logos/icono.png'
-import Logo from '../../img/logos/Logo_Nacion_Seguros.png'
+import Logo from '../../img/logos/logoAzul.png'
 
 export default function RoulettePage() {
     //Los elementos tienen que ser diferentes
