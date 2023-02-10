@@ -2,6 +2,7 @@
 
 //Celeste -> rgb(69 143 180)
 //Azul -> rgb(0 92 178)
+//
 
 @font-face {
     font-family: 'KievitOT';
@@ -11,6 +12,13 @@
 }
 
 body{
+    overflow: hidden;
     margin: 0;
     font-family: "KievitOT";
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

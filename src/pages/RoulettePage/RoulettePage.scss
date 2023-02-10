@@ -1,0 +1,15 @@
+.page{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .logo{
+        position: absolute;
+        top: 3%;
+        left: 3%;
+        width: 25%;
+        img{
+            width: 100%;
+        }
+    }
+}
