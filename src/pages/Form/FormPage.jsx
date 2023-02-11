@@ -8,6 +8,14 @@ export default function FormPage(props) {
 
   const db = getDatabase();
 
+  function validEmail(email) {
+    if (/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(email)){
+     return true
+    } else {
+     return false
+    }
+  }
+
   function submit(){
     var alerta = document.getElementById("error")
 
@@ -21,8 +29,10 @@ export default function FormPage(props) {
 
     if(nombre == "" || provincia == "" || localidad == "" || email == ""){
       alerta.classList.remove("hide")
+      document.getElementById("errorText").innerHTML = "Por favor completá todos los datos"
     }
-    else{
+    else if(validEmail(email) == true){
+
       const obj = {
         "Nombre": nombre,
         "Email" : email,
@@ -33,6 +43,10 @@ export default function FormPage(props) {
 
       const prevData = localStorage.getItem("data") ? localStorage.getItem("data"):""
       localStorage.setItem("data", prevData+"$"+JSON.stringify(obj))
+    }
+    else{
+      alerta.classList.remove("hide")
+      document.getElementById("errorText").innerHTML = "El email ingresado no es válido"
     }
   }
 
@@ -128,7 +142,7 @@ export default function FormPage(props) {
       <center>
         <div id='error' className='hide'>
           <div className='box'>
-            <h3>Por favor completá todos los datos</h3>
+            <h3 id="errorText"></h3>
             <button onClick={closeError}>CERRAR</button>
           </div>
         </div>
