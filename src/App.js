@@ -1,9 +1,8 @@
 import React from 'react';
 import './App.scss';
 import FormPage from './pages/Form/FormPage';
-import RoulettePage from './pages/RoulettePage';
 import {initializeApp} from "firebase/app"
-import RoulettePage from './pages/RoulettePage/RoulettePage';
+//import RoulettePage from './pages/RoulettePage/RoulettePage';
 
 function App() {
 

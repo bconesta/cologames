@@ -9,7 +9,6 @@ export default function FormPage(props) {
   const db = getDatabase();
 
   function submit(){
-    console.log("ERROR")
     var alerta = document.getElementById("error")
 
     var nombre = document.getElementById("nombre").value;
@@ -47,8 +46,13 @@ export default function FormPage(props) {
     return new Promise(resolve => {
       timerId = setTimeout(() => {
         const textoUpload = document.getElementById("textUpload");
-        textoUpload.innerHTML = "Ocurrio un error, intenta de nuevo"
-        textoUpload.style.color = "rgba(162, 41, 41)"
+        if(navigator.onLine){
+          textoUpload.innerHTML = "Ocurrio un error, intentá de nuevo"
+        }else{
+          textoUpload.innerHTML = "No estas conectado a una red WiFi"
+        }
+        
+        textoUpload.style.color = "rgb(119, 9, 9)"
 
       }, 5000)
     })
@@ -65,6 +69,7 @@ export default function FormPage(props) {
       localStorage.clear();
       textoUpload.innerHTML = "¡Datos subidos con exito!"
       textoUpload.style.color = "rgba(167, 242, 162)"
+      document.getElementById("dataNum").innerHTML = "Hay 0 datos a subir"
       clearTimeout(timerId)
     })
     
@@ -75,17 +80,23 @@ export default function FormPage(props) {
     const password = "Nacionseguros2023"
     const textoUpload = document.getElementById("textUpload");
     if(passwordInput == password){
-        const data = localStorage.getItem("data").split("$").slice(1);
-        data.forEach(obj=>{
-          pushFb(JSON.parse(obj));
-        })
-        textoUpload.innerHTML = "Subiendo datos..."
-        textoUpload.style.color = "rgba(255, 255, 255)"
-        const checkUpload = await timeout()
+        if(localStorage.getItem("data") != null){ //Comprueba datos vacios
+          const data = localStorage.getItem("data").split("$").slice(1);
+          data.forEach(obj=>{
+            pushFb(JSON.parse(obj));
+          })
+          textoUpload.innerHTML = "Subiendo datos..."
+          textoUpload.style.color = "rgba(255, 255, 255)"
+          const checkUpload = await timeout()
+        }
+        else{
+          textoUpload.innerHTML = "No hay datos para subir"
+          textoUpload.style.color = "rgb(119, 9, 9)"
+        }  
     }
     else{
       textoUpload.innerHTML = "Contraseña incorrecta"
-      textoUpload.style.color = "rgba(162, 41, 41)"
+      textoUpload.style.color = "rgb(119, 9, 9)"
     }
   }
 
@@ -94,11 +105,19 @@ export default function FormPage(props) {
   function closeOpenUpload(){
     const textoUpload = document.getElementById("textUpload");
     textoUpload.innerHTML = ""
+
     if (open == true){
       document.getElementById("subir").classList.add("hide");
       open = false
     }else{
       document.getElementById("subir").classList.remove("hide");
+      document.getElementById("password").value = "";
+      if(localStorage.getItem("data") != null){
+        const data = localStorage.getItem("data").split("$").slice(1);
+        document.getElementById("dataNum").innerHTML = "Hay " + data.length + " datos a subir"
+      }else{
+        document.getElementById("dataNum").innerHTML = "Hay 0 datos a subir"
+      }
       open = true
     }
     
@@ -116,11 +135,14 @@ export default function FormPage(props) {
 
         <div id='subir' className='hide'>
           <div className='box'>
-            <button onClick={closeOpenUpload} className="close">Salir</button>
-            <label htmlFor='password'>Contraseña</label>
-            <input type="text" id="password" name="password"/>
-            <button onClick={fbButton} className="upload">SUBIR DATOS</button>
-            <h2 id="textUpload"></h2>
+            <center>
+              <button onClick={closeOpenUpload} className="close">Salir</button>
+              <label htmlFor='password'>Contraseña</label>
+              <input type="text" id="password" name="password"/>
+              <h2 id="dataNum"></h2>
+              <button onClick={fbButton} className="upload">SUBIR DATOS</button>
+              <h1 id="textUpload"></h1>
+            </center>
           </div>
         </div>
 
