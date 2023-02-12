@@ -9,7 +9,6 @@ export default function FormPage(props) {
   const db = getDatabase();
 
   function submit(){
-    console.log("ERROR")
     var alerta = document.getElementById("error")
 
     var nombre = document.getElementById("nombre").value;
@@ -34,6 +33,7 @@ export default function FormPage(props) {
 
       const prevData = localStorage.getItem("data") ? localStorage.getItem("data"):""
       localStorage.setItem("data", prevData+"$"+JSON.stringify(obj))
+      props.handleSection(1);
     }
   }
 
