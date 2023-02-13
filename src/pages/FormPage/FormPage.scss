@@ -13,275 +13,277 @@
     }
     background-color: rgb(0 92 178);
     height: 100vh;
-}
 
-.logo{
-    width: 40%;
-    margin-top: 6%;
-}
-
-.hide{
-    display: none;
-}
-
-.table-container{
-    margin-top: 7%;
-    font-size: 30px;
-    color: white;
-    display: inline-flex;
-    width: 80%;
-
-    .col1{
-        width: 50%;
-    }
-
-    .col2{
-        width: 50%;
-    }
-
-    .cont{
-        padding: 20px;
-        text-align: left;
-        margin-left: 4%;
-    }
-
-    label{
-        display: block;
-        margin-bottom: 15px;
-    }
-
-    input{
-        font-size: 20px;
-        background-color: white;
-        border-style: none;
-        width: 90%;
-        height: 50px;
-        padding-left: 10px;
-        outline: none;
-    }
-
-    input:focus{
-        box-shadow: 0 0 10px rgb(4, 201, 255);
-    }
-    
-
-    select{
-        font-size: 20px;
-        background-color: white;
-        border-style: none;
-        width: 93%;
-        height: 50px;
-        padding-left: 10px;
-        outline: none;
-
-        option{
-            background-color: white;
-            color: black;
-        }
-    }
-}
-
-
-.newsletter{
-    margin-top: 2%;
-    display: inline-flex;
-
-    h2{
-        font-size: 30px;
-        color: white;
-    }
-
-    input{
-        appearance: none;
-        background-color: white;
-        border-style: none;
-        border-color: rgb(69 143 180);
-        width: 30px;
-        height: 30px;
-        margin-left: 20px;
+    .logo{
+        width: 40%;
         margin-top: 6%;
     }
-
-    input:checked{
-        border-style: solid;
-        background-color: rgba(255, 255, 255, 0.212);
-        border-color: rgb(255, 255, 255);
-        border-width: 5px;
+    
+    .hide{
+        display: none;
     }
-
-}
-
-.enviar{
-    display: block;
-    font-size: 40px;
-    color: white;
-    background-color: rgb(69 143 180);
-    border-style: none;
-    padding: 1% 5%;
-    margin-top: 30px;
-    font-weight: bold;
-}
-
-.enviar:active{
-    background-color: rgb(54, 114, 145);
-}
-
-
-#error{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    background-color: rgba(0, 0, 0, 0.684);
-    z-index: 10;
-
-    .box{
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-        background-color: rgb(182, 115, 115);
-        color: white;
-        text-align: center;
-        width: fit-content;
-        height: fit-content;
-        padding: 40px;
-        border-radius: 15px;
-    }
-
-    h3{
-        background-color: rgba(95, 158, 160, 0) !important;
+    
+    .table-container{
+        margin-top: 7%;
         font-size: 30px;
-        margin-top: 0;
-        padding-top: 20px;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    button{
-        font-size: 30px;
-        color: rgb(0, 0, 0);
-        background-color: rgb(255, 255, 255);
-        border-style: none;
-        padding: 1% 5%;
-        margin-top: 5%;
-        font-weight: bold;
-    }
-}
-
-#subir{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    background-color: rgba(0, 0, 0, 0.684);
-    z-index: 10;
-
-    center{
-        background-color: rgba(0, 0, 0, 0);
-    }
-
-    .box{
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-        background-color: rgb(69 143 180);
         color: white;
-        text-align: center;
-        width: fit-content;
-        height: fit-content;
-        padding: 3% 10%;
-        border-radius: 15px;
+        display: inline-flex;
+        width: 80%;
+    
+        .col1{
+            width: 50%;
+        }
+    
+        .col2{
+            width: 50%;
+        }
+    
+        .cont{
+            padding: 20px;
+            text-align: left;
+            margin-left: 4%;
+        }
+    
+        label{
+            display: block;
+            margin-bottom: 15px;
+        }
+    
+        input{
+            font-size: 20px;
+            background-color: white;
+            border-style: none;
+            width: 90%;
+            height: 50px;
+            padding-left: 10px;
+            outline: none;
+        }
+    
+        input:focus{
+            box-shadow: 0 0 10px rgb(4, 201, 255);
+        }
+        
+    
+        select{
+            font-size: 20px;
+            background-color: white;
+            border-style: none;
+            width: 93%;
+            height: 50px;
+            padding-left: 10px;
+            outline: none;
+    
+            option{
+                background-color: white;
+                color: black;
+            }
+        }
     }
-
-    .close{
-        position: absolute;
-        border-radius: 30px;
-        width: fit-content;
-        height: 40px;
-        top: 20px;
-        right: 20px;
-        background-color: rgb(210, 150, 150);
-        border-style: none;
-        color: white;
-        font-size: 25px;
-        padding-left: 15px;
-        padding-right: 15px;
+    
+    
+    .newsletter{
+        margin-top: 2%;
+        display: inline-flex;
+    
+        h2{
+            font-size: 30px;
+            color: white;
+        }
+    
+        input{
+            appearance: none;
+            background-color: white;
+            border-style: none;
+            border-color: rgb(69 143 180);
+            width: 30px;
+            height: 30px;
+            margin-left: 20px;
+            margin-top: 6%;
+        }
+    
+        input:checked{
+            border-style: solid;
+            background-color: rgba(255, 255, 255, 0.212);
+            border-color: rgb(255, 255, 255);
+            border-width: 5px;
+        }
+    
     }
-
-    .upload{
-        font-size: 30px;
-        color: rgb(0, 0, 0);
-        background-color: rgb(255, 255, 255);
-        border-style: none;
-        padding: 2% 25%;
-        margin-top: 5%;
-        font-weight: bold;
-        bottom: 0;
-    }
-
-    .upload:active{
-        background-color: rgba(255, 255, 255, 0.646);
-    }
-
-    label{
-        background-color: rgba(95, 158, 160, 0) !important;
+    
+    .enviar{
         display: block;
-        text-align: center;
         font-size: 40px;
-        margin-bottom: 20px;
         color: white;
-        margin-top: 20px;
-    }
-
-    input{
-        background-color: white;
+        background-color: rgb(69 143 180);
         border-style: none;
-        width: 400px;
-        height: 40px;
-        font-size: 30px;
-        outline: none;
-        padding-left: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
-
-    input:focus{
-        box-shadow: 0 0 10px rgb(4, 201, 255);
-    }
-
-    #textUpload{
-        background-color: rgba(162, 41, 41, 0) !important;
-    }
-
-    #dataNum{
-        background-color: rgba(162, 41, 41, 0) !important;
-        margin-top: 10%;
-        margin-bottom: 0;
-        width: fit-content;
-        text-align: center;
         padding: 1% 5%;
-        border-radius: 100px;
+        margin-top: 30px;
+        font-weight: bold;
+    }
+    
+    .enviar:active{
+        background-color: rgb(54, 114, 145);
+    }
+    
+    
+    #error{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        background-color: rgba(0, 0, 0, 0.684);
+        z-index: 10;
+    
+        .box{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            background-color: rgb(182, 115, 115);
+            color: white;
+            text-align: center;
+            width: fit-content;
+            height: fit-content;
+            padding: 40px;
+            border-radius: 15px;
+        }
+    
+        h3{
+            background-color: rgba(95, 158, 160, 0) !important;
+            font-size: 30px;
+            margin-top: 0;
+            padding-top: 20px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    
+        button{
+            font-size: 30px;
+            color: rgb(0, 0, 0);
+            background-color: rgb(255, 255, 255);
+            border-style: none;
+            padding: 1% 5%;
+            margin-top: 5%;
+            font-weight: bold;
+        }
+    }
+    
+    #subir{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        background-color: rgba(0, 0, 0, 0.684);
+        z-index: 10;
+    
+        center{
+            background-color: rgba(0, 0, 0, 0);
+        }
+    
+        .box{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            background-color: rgb(69 143 180);
+            color: white;
+            text-align: center;
+            width: fit-content;
+            height: fit-content;
+            padding: 3% 10%;
+            border-radius: 15px;
+        }
+    
+        .close{
+            position: absolute;
+            border-radius: 30px;
+            width: fit-content;
+            height: 40px;
+            top: 20px;
+            right: 20px;
+            background-color: rgb(210, 150, 150);
+            border-style: none;
+            color: white;
+            font-size: 25px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    
+        .upload{
+            font-size: 30px;
+            color: rgb(0, 0, 0);
+            background-color: rgb(255, 255, 255);
+            border-style: none;
+            padding: 2% 25%;
+            margin-top: 5%;
+            font-weight: bold;
+            bottom: 0;
+        }
+    
+        .upload:active{
+            background-color: rgba(255, 255, 255, 0.646);
+        }
+    
+        label{
+            background-color: rgba(95, 158, 160, 0) !important;
+            display: block;
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: white;
+            margin-top: 20px;
+        }
+    
+        input{
+            background-color: white;
+            border-style: none;
+            width: 400px;
+            height: 40px;
+            font-size: 30px;
+            outline: none;
+            padding-left: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+    
+        input:focus{
+            box-shadow: 0 0 10px rgb(4, 201, 255);
+        }
+    
+        #textUpload{
+            background-color: rgba(162, 41, 41, 0) !important;
+        }
+    
+        #dataNum{
+            background-color: rgba(162, 41, 41, 0) !important;
+            margin-top: 10%;
+            margin-bottom: 0;
+            width: fit-content;
+            text-align: center;
+            padding: 1% 5%;
+            border-radius: 100px;
+        }
+    
+    }
+    
+    .hidenButton{
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: rgba(255, 0, 0, 0);
+        border-style: none;
+        height: 5%;
+        width: 5%;
+        z-index: 5;
     }
 
 }
 
-.hidenButton{
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: rgba(255, 0, 0, 0);
-    border-style: none;
-    height: 5%;
-    width: 5%;
-    z-index: 5;
-}
