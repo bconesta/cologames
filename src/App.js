@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.scss';
-import FormPage from './pages/Form/FormPage';
+
+import FormPage from './pages/FormPage/FormPage';
+import RoulettePage from './pages/RoulettePage/RoulettePage';
+import VideoPage from './pages/VideoPage/VideoPage'
+import QuizPage from './pages/QuizPage/QuizPage'
+
 import {initializeApp} from "firebase/app"
-//import RoulettePage from './pages/RoulettePage/RoulettePage';
 
 function App() {
 
@@ -18,9 +22,18 @@ function App() {
 
   const app = initializeApp(firebaseConfig)
 
+  const [section, setSection] = useState(0);
+
+  const handleSection = (page) =>{
+    setSection(page);
+  }
+
   return (
     <div className="App">      
-      <FormPage app={app}/>
+      {section === 0 && <FormPage app={app} handleSection={handleSection} />}
+      {section === 1 && <RoulettePage handleSection={handleSection} />}
+      {section === 2 && <VideoPage handleSection={handleSection} />}
+      {section === 3 && <QuizPage handleSection={handleSection} />}
     </div>
   );
 }

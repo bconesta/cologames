@@ -48,6 +48,7 @@ export default function FormPage(props) {
       }
       const prevData = localStorage.getItem("data") ? localStorage.getItem("data"):""
       localStorage.setItem("data", prevData+"$"+JSON.stringify(obj))
+      props.handleSection(1);
     }
   }
   
