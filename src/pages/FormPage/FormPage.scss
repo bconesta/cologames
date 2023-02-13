@@ -5,10 +5,14 @@
     font-weight: normal;
   }
 
-*{
+.form-page{
+    *{
+        background-color: rgb(0 92 178);
+        font-family: "KievitOT";
+        overflow: hidden;
+    }
     background-color: rgb(0 92 178);
-    font-family: "KievitOT";
-    overflow: hidden;
+    height: 100vh;
 }
 
 .logo{
@@ -69,8 +73,14 @@
         height: 50px;
         padding-left: 10px;
         outline: none;
+
+        option{
+            background-color: white;
+            color: black;
+        }
     }
 }
+
 
 .newsletter{
     margin-top: 2%;
@@ -94,7 +104,7 @@
 
     input:checked{
         border-style: solid;
-        background-color: rgba(0, 0, 0, 0.586);
+        background-color: rgba(255, 255, 255, 0.212);
         border-color: rgb(255, 255, 255);
         border-width: 5px;
     }
@@ -116,6 +126,7 @@
     background-color: rgb(54, 114, 145);
 }
 
+
 #error{
     position: absolute;
     top: 0;
@@ -124,6 +135,7 @@
     bottom: 0;
     margin: auto;
     background-color: rgba(0, 0, 0, 0.684);
+    z-index: 10;
 
     .box{
         position: absolute;
@@ -169,6 +181,11 @@
     bottom: 0;
     margin: auto;
     background-color: rgba(0, 0, 0, 0.684);
+    z-index: 10;
+
+    center{
+        background-color: rgba(0, 0, 0, 0);
+    }
 
     .box{
         position: absolute;
@@ -182,7 +199,7 @@
         text-align: center;
         width: fit-content;
         height: fit-content;
-        padding: 3%;
+        padding: 3% 10%;
         border-radius: 15px;
     }
 
@@ -206,9 +223,14 @@
         color: rgb(0, 0, 0);
         background-color: rgb(255, 255, 255);
         border-style: none;
-        padding: 1% 5%;
-        margin-top: 10%;
+        padding: 2% 25%;
+        margin-top: 5%;
         font-weight: bold;
+        bottom: 0;
+    }
+
+    .upload:active{
+        background-color: rgba(255, 255, 255, 0.646);
     }
 
     label{
@@ -227,11 +249,28 @@
         width: 400px;
         height: 40px;
         font-size: 30px;
+        outline: none;
+        padding-left: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
 
+    input:focus{
+        box-shadow: 0 0 10px rgb(4, 201, 255);
     }
 
     #textUpload{
         background-color: rgba(162, 41, 41, 0) !important;
+    }
+
+    #dataNum{
+        background-color: rgba(162, 41, 41, 0) !important;
+        margin-top: 10%;
+        margin-bottom: 0;
+        width: fit-content;
+        text-align: center;
+        padding: 1% 5%;
+        border-radius: 100px;
     }
 
 }
@@ -244,4 +283,5 @@
     border-style: none;
     height: 5%;
     width: 5%;
+    z-index: 5;
 }
