@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import './FormPage.scss'
 import logoBlanco from "../../img/logos/logoBlanco.png"
 import { getDatabase, ref, child, push, update } from "firebase/database";
@@ -6,197 +6,149 @@ import { getDatabase, ref, child, push, update } from "firebase/database";
 
 export default function FormPage(props) {
 
+  //Declaración de los valores del formulario
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [prov, setProv] = useState("");
+  const [localidad, setLocalidad] = useState("");
+  const [news, setNews] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorText, setErrorText] = useState("");
+  const [uploadText, setUploadText] = useState("");
+  const [color, setColor] = useState({});
+  const [pend, setPend] = useState(0);
+  const [pass, setPass] = useState("");
+  const [open, setOpen] = useState(false);
+  
+  //Lista de provincias 
+  const provincias = ['Buenos Aires', 'CABA', 'Catamarca', 'Chaco', 'Chubut', 'Cordoba', 'Corrientes', 'Entre Rios', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquen', 'Rio Negro', 'Salta', 'San Luis', 'Santa Cruz', 'Santa Fe', 'Santiago del Estero', 'Tierra del Fuego']
+
   const db = getDatabase();
 
   function validEmail(email) {
-    if (/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(email)){
-     return true
-    } else {
-     return false
-    }
+    return /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(email) ? true : false
   }
 
   function submit(){
-    var alerta = document.getElementById("error")
-
-    var nombre = document.getElementById("nombre").value;
-    var provincia = document.getElementById("provincia").value;
-    var localidad = document.getElementById("localidad").value;
-    var email = document.getElementById("email").value;
-    var checkbox = document.getElementById("newsletter").checked;
-
-    checkbox = checkbox === true ? "Si":"No"
-
-    if(nombre == "" || provincia == "" || localidad == "" || email == ""){
-      alerta.classList.remove("hide")
-      document.getElementById("errorText").innerHTML = "Por favor completá todos los datos"
+    if(name === "" || prov === "" || localidad === "" || email === ""){
+      setError(true)
+      setErrorText("Por favor completá todos los datos")
     }
-    else if(validEmail(email) == true){
-
+    else if(!validEmail(email)){
+      setError(true)
+      setErrorText("El email ingresado no es válido")
+    }
+    else{
       const obj = {
-        "Nombre": nombre,
+        "Nombre": name,
         "Email" : email,
-        "Provincia" : provincia,
+        "Provincia" : prov,
         "Localidad" : localidad,
-        "Newsletter" : checkbox
+        "Newsletter" : news ? "Si" : "No"
       }
-
       const prevData = localStorage.getItem("data") ? localStorage.getItem("data"):""
       localStorage.setItem("data", prevData+"$"+JSON.stringify(obj))
     }
-    else{
-      alerta.classList.remove("hide")
-      document.getElementById("errorText").innerHTML = "El email ingresado no es válido"
-    }
   }
-
-  function closeError(){
-    var alerta = document.getElementById("error");
-    alerta.classList.add("hide");
-  }
-
+  
   let timerId = ""
   function timeout(){
     return new Promise(resolve => {
       timerId = setTimeout(() => {
-        const textoUpload = document.getElementById("textUpload");
-        if(navigator.onLine){
-          textoUpload.innerHTML = "Ocurrio un error, intentá de nuevo"
-        }else{
-          textoUpload.innerHTML = "No estas conectado a una red WiFi"
-        }
-        
-        textoUpload.style.color = "rgb(119, 9, 9)"
-
+        navigator.onLine ? setUploadText("Ocurrio un error, intentá de nuevo") : setUploadText("No estas conectado a una red WiFi")
+        setColor({color : 'rgb(119, 9, 9)'})
       }, 5000)
     })
   }
 
   function pushFb(postData){
-  
     const newPostKey = push(child(ref(db), 'posts')).key;
-  
     const updates = {};
-    updates[newPostKey] = postData;
-    const textoUpload = document.getElementById("textUpload");
+    updates[newPostKey] = postData;;
     update(ref(db), updates).then(()=>{
       localStorage.clear();
-      textoUpload.innerHTML = "¡Datos subidos con exito!"
-      textoUpload.style.color = "rgba(167, 242, 162)"
-      document.getElementById("dataNum").innerHTML = "Hay 0 datos a subir"
+      setUploadText("¡Datos subidos con exito!")
+      setColor({color : "rgba(167, 242, 162)"})
+      setPend(0)
       clearTimeout(timerId)
     })
-    
   }
 
   async function fbButton(){
-    const passwordInput = document.getElementById("password").value;
     const password = "Nacionseguros2023"
-    const textoUpload = document.getElementById("textUpload");
-    if(passwordInput == password){
+    if(pass === password){
         if(localStorage.getItem("data") != null){ //Comprueba datos vacios
           const data = localStorage.getItem("data").split("$").slice(1);
           data.forEach(obj=>{
             pushFb(JSON.parse(obj));
           })
-          textoUpload.innerHTML = "Subiendo datos..."
-          textoUpload.style.color = "rgba(255, 255, 255)"
-          const checkUpload = await timeout()
+          setUploadText("Subiendo datos...")
+          setColor({color: "rgba(255, 255, 255)"})
+          await timeout()
         }
         else{
-          textoUpload.innerHTML = "No hay datos para subir"
-          textoUpload.style.color = "rgb(119, 9, 9)"
+          setUploadText("No hay datos para subir")
+          setColor({color: "rgb(119, 9, 9)"})
         }  
     }
     else{
-      textoUpload.innerHTML = "Contraseña incorrecta"
-      textoUpload.style.color = "rgb(119, 9, 9)"
+      setUploadText("Contraseña incorrecta")
+      setColor({color: "rgb(119, 9, 9)"})
     }
   }
 
-  var open = false;
-
   function closeOpenUpload(){
-    const textoUpload = document.getElementById("textUpload");
-    textoUpload.innerHTML = ""
-
-    if (open == true){
-      document.getElementById("subir").classList.add("hide");
-      open = false
-    }else{
-      document.getElementById("subir").classList.remove("hide");
-      document.getElementById("password").value = "";
-      if(localStorage.getItem("data") != null){
-        const data = localStorage.getItem("data").split("$").slice(1);
-        document.getElementById("dataNum").innerHTML = "Hay " + data.length + " datos a subir"
-      }else{
-        document.getElementById("dataNum").innerHTML = "Hay 0 datos a subir"
-      }
-      open = true
-    }
-    
+    setUploadText("")
+    open ? setOpen(false) : setOpen(true) 
+    const data = localStorage.getItem("data") ? localStorage.getItem("data").split("$").slice(1) : ""
+    setPend(data.length)
   }
   
   return (
     <div className='form-page'>
       <center>
-        <div id='error' className='hide'>
+        {error &&
+        <div id='error'>
           <div className='box'>
-            <h3 id="errorText"></h3>
-            <button onClick={closeError}>CERRAR</button>
+            <h3 id="errorText">{errorText}</h3>
+            <button onClick={()=>{setError(false)}}>CERRAR</button>
           </div>
         </div>
-
-        <div id='subir' className='hide'>
+        }
+        {open &&
+        <div id='subir'>
           <div className='box'>
             <center>
               <button onClick={closeOpenUpload} className="close">Salir</button>
               <label htmlFor='password'>Contraseña</label>
-              <input type="text" id="password" name="password"/>
-              <h2 id="dataNum"></h2>
+              <input type="text" id="password" name="password" value={pass} onChange={(e)=>{setPass(e.target.value)}}/>
+              <h2 id="dataNum">Hay {pend} datos a subir</h2>
               <button onClick={fbButton} className="upload">SUBIR DATOS</button>
-              <h1 id="textUpload"></h1>
+              <h1 id="textUpload" style={color}>{uploadText}</h1>
             </center>
           </div>
         </div>
-
+        } 
         <button onClick={closeOpenUpload} className="hidenButton"></button>
 
         <div>
-          <img className="logo" src={logoBlanco}></img>
+          <img className="logo" src={logoBlanco} alt="logo blanco" />
         </div>
         <div className='table-container'>
           <div className='col1'>
             <div className="cont">
-              <label htmlFor='nombre'>Nombre y apellido</label>
-              <input type="text" id="nombre" name="nombre"/>
+              <label htmlFor='name'>Nombre y apellido</label>
+              <input type="text" id="name" name="name" value={name} onChange={(e)=>{setName(e.target.value)}} />
             </div>
             <div className="cont">
               <label htmlFor='provincia'>Provincia</label>
-              <select id="provincia" name="provincia">
+              <select id="provincia" name="provincia" value={prov} onChange={(e)=>{setProv(e.target.value)}}>
                 <option value="" disabled selected>Selecciona una provincia</option>
-                <option value="Buenos Aires">Buenos Aires</option>
-                <option value="CABA">CABA</option>
-                <option value="Catamarca">Catamarca</option>
-                <option value="Chaco">Chaco</option>
-                <option value="Chubut">Chubut</option>
-                <option value="Cordoba">Cordoba</option>
-                <option value="Corrientes">Corrientes</option>
-                <option value="Entre Rios">Entre Rios</option>
-                <option value="Formosa">Formosa</option>
-                <option value="Jujuy">Jujuy</option>
-                <option value="La Pampa">La Pampa</option>
-                <option value="La Rioja">La Rioja</option>
-                <option value="Mendoza">Mendoza</option>
-                <option value="Misiones">Misiones</option>
-                <option value="Neuquen">Neuquen</option>
-                <option value="Rio Negro">Rio Negro</option>
-                <option value="Salta">Salta</option>
-                <option value="San Luis">San Luis</option>
-                <option value="Santa Cruz">Santa Cruz</option>
-                <option value="Santa Fe">Santa Fe</option>
-                <option value="Santiago Del Estero">Santiago Del Estero</option>
-                <option value="Tierra Del Fuego">Tierra Del Fuego</option>
+                {
+                  provincias.map((provincia) => {
+                    return <option key={provincias.indexOf(provincia)} value={provincia}>{provincia}</option>
+                  })
+                }
               </select>
             </div>
           </div>
@@ -204,17 +156,17 @@ export default function FormPage(props) {
           <div className='col2'>
             <div className='cont'>
               <label>Email</label>
-              <input type="email" id="email"/>
+              <input type="email" id="email" value={email} onChange={(e)=>{setEmail(e.target.value)}} />
             </div>
             <div className='cont'>
               <label>Localidad</label>
-              <input type="text" name="localidad" id="localidad"/>
+              <input type="text" name="localidad" id="localidad" value={localidad} onChange={(e)=>{setLocalidad(e.target.value)}}/>
             </div>
           </div>
         </div>
         <div className='newsletter'>
             <h2>¿Deseas recibir newsletters?</h2>
-            <input type="checkbox" id="newsletter"></input>
+            <input type="checkbox" id="newsletter" value={news} onChange={(e)=>{setNews(e.target.checked)}}></input>
         </div>
         <button onClick={submit} className="enviar">ENVIAR</button>
       </center>
