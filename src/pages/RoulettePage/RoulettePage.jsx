@@ -36,7 +36,6 @@ export default function RoulettePage(props) {
             handleIndex={handleIndex}
             logo={Icono}
             />
-            <h1 style={{position : "absolute", top : 0}}>{index}</h1>
             <h1 style={{position : "absolute", bottom : '5%'}}>{text}</h1>
         </div>
     )
