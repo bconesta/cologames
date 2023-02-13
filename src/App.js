@@ -30,10 +30,7 @@ function App() {
 
   return (
     <div className="App">      
-      {section === 0 && <FormPage app={app} handleSection={handleSection} />}
-      {section === 1 && <RoulettePage handleSection={handleSection} />}
-      {section === 2 && <VideoPage handleSection={handleSection} />}
-      {section === 3 && <QuizPage handleSection={handleSection} />}
+      {section === 0 && <QuizPage handleSection={handleSection} />}
     </div>
   );
 }
