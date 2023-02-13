@@ -1,59 +1,51 @@
 import React, { useEffect, useState } from 'react'
 import './QuizPage.scss'
 import Logo from '../../img/logos/logoAzul.png'
+import questions from './questions.json'
 
-export default function QuizPage() {
+export default function QuizPage(props) {
 
-  const [question, setQuestion] = useState("");
-  const [option, setOption] = useState([]);
+  const [number, setNumber] = useState(0);
+  const [color, setColor] = useState({});
+  const [selected, setSelected] = useState(false);
   
-  const preguntas = ["Pregunta 1", "Pregunta 2", "Pregunta 3", "Pregunta 4", "Pregunta 5"];
-  const respuestasCorrectas = [1,0,2,1,3];
-  const respuestas = [["Opcion A","Opcion B", "Opcion C", "Opcion D"],["Opcion A","Opcion B", "Opcion C", "Opcion D"],["Opcion A","Opcion B", "Opcion C", "Opcion D"],["Opcion A","Opcion B", "Opcion C", "Opcion D"],["Opcion A","Opcion B", "Opcion C", "Opcion D"]];
-
-  useEffect(()=>{onLoad()}, [])
-
-  function onLoad(){
-    const questionText = document.getElementById("question");
-
-    var totalQuestions = preguntas.length;
-    let questionNum = Math.floor(Math.random() * totalQuestions);
-
-    var question = preguntas[questionNum];
-
-    for(var i=0; i<=option.length; i++){
-      optionText[i].innerHTML = respuestas[questionNum][i];
-    }
-
-    console.log(questionNum);
-  }
-  
-
-  function option(num){
-    if(num == respuestasCorrectas[questionNum]-1){
-      console.log("Es correcta");
-    }
-    else{
-      console.log("Es incorrecta");
+  const option = (event)=>{
+    if(!selected){  
+      const id = Number(event.target.id);
+      const correct = questions[props.theme][number].correct;
+      let colors = [{}, {}, {}, {}]
+      colors[correct] = {backgroundColor : 'green', boxShadow : 'inset 0 -10px 0 red'}
+      if(correct !== id){
+        colors[id] = {backgroundColor : 'red', boxShadow : 'inset 0 -10px 0 red'}
+      }
+      setColor(colors);
+      setSelected(true);
+      next();
     }
   }
 
-
+  async function next(){
+    await setTimeout(()=>{
+      setSelected(false)
+      setColor([{},{},{},{}])
+      number+1 === questions[props.theme].length ? props.handleSection(3) : setNumber(number+1)
+    }, 1000)
+  }
 
   return (
     <div className='quiz-page'>
       <img src={Logo} alt="nacion logo" className='logo'/>
-      <div id="questionNum">Pregunta 1/5</div>
+      <div id="questionNum">Pregunta {number+1}/{questions[props.theme].length}</div>
       <center>
         <div className='question-container'>
-          <div id="question">{question}</div>
+          <div id="question">{questions[props.theme][number].tittle}</div>
         </div>
       
         <div className="options-container">
-          <button onClick={()=>{option(1)}} id="option1">{option[0]}</button>
-          <button onClick={()=>{option(2)}} id="option2">{option[1]}</button>
-          <button onClick={()=>{option(3)}} id="option3">{option[2]}</button>
-          <button onClick={()=>{option(4)}} id="option4">{option[3]}</button>
+          <button onClick={option} id="0" style={color[0]}>{questions[props.theme][number].option[0]}</button>
+          <button onClick={option} id="1" style={color[1]}>{questions[props.theme][number].option[1]}</button>
+          <button onClick={option} id="2" style={color[2]}>{questions[props.theme][number].option[2]}</button>
+          <button onClick={option} id="3" style={color[3]}>{questions[props.theme][number].option[3]}</button>
         </div>
       </center>
     </div>

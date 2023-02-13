@@ -3,10 +3,11 @@ import './App.scss';
 
 import FormPage from './pages/FormPage/FormPage';
 import RoulettePage from './pages/RoulettePage/RoulettePage';
-import VideoPage from './pages/VideoPage/VideoPage'
 import QuizPage from './pages/QuizPage/QuizPage'
+import EndPage from './pages/EndPage/EndPage'
 
 import {initializeApp} from "firebase/app"
+import questionsJson from './pages/QuizPage/questions.json'
 
 function App() {
 
@@ -22,15 +23,45 @@ function App() {
 
   const app = initializeApp(firebaseConfig)
 
-  const [section, setSection] = useState(0);
+  function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
 
-  const handleSection = (page) =>{
+  const [section, setSection] = useState(1);
+  const [theme, setTheme] = useState(0);
+
+  const handleSection = (page) => {
     setSection(page);
   }
 
+  const handleTheme = (r) => {
+    setTheme(r);
+  }
+
+  /*const questions = questionsJson.forEach((element)=>{
+    shuffle(element)
+  })*/
+
   return (
     <div className="App">      
-      {section === 0 && <QuizPage handleSection={handleSection} />}
+      {section === 0 && <FormPage app={app} handleSection={handleSection} />}
+      {section === 1 && <RoulettePage handleSection={handleSection} handleTheme={handleTheme} />}
+      {section === 2 && <QuizPage handleSection={handleSection} theme={theme} />}
+      {section === 3 && <EndPage handleSection={handleSection} />}
     </div>
   );
 }
