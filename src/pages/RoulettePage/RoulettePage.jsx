@@ -4,18 +4,25 @@ import './RoulettePage.scss'
 import Icono from '../../img/logos/icono.png'
 import Logo from '../../img/logos/logoAzul.png'
 
-export default function RoulettePage() {
+export default function RoulettePage(props) {
     //Los elementos tienen que ser diferentes
-    const elements = ["Auto", "Tecno", "Alquiler", "Bicicleta", "Hogar", "Bruno", "Serra", "Hola"]
+    const elements = ["Auto", "Tecno", "Alquiler"]
 
     const [index, setIndex] = useState(0);
     const [text, setText] = useState("¡Toca para jugar!")
 
     function handleIndex(i){
         setIndex(i)
+        props.handleTheme(i)
         setText("")
+        nextPage()
     }
 
+    async function nextPage(){
+        await setTimeout(()=>{
+            props.handleSection(2)
+        }, 15000)
+    }
 
     return (
         <div className='page'>
