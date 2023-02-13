@@ -14,9 +14,9 @@ export default function QuizPage(props) {
       const id = Number(event.target.id);
       const correct = questions[props.theme][number].correct;
       let colors = [{}, {}, {}, {}]
-      colors[correct] = {backgroundColor : 'green', boxShadow : 'inset 0 -10px 0 red'}
+      colors[correct] = {backgroundColor : 'green', boxShadow : 'inset 0 -10px 0 #005000'}
       if(correct !== id){
-        colors[id] = {backgroundColor : 'red', boxShadow : 'inset 0 -10px 0 red'}
+        colors[id] = {backgroundColor : '#F04B1D', boxShadow : 'inset 0 -10px 0 #aa3615'}
       }
       setColor(colors);
       setSelected(true);
