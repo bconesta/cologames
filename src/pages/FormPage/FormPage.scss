@@ -120,11 +120,13 @@
         padding: 1% 5%;
         margin-top: 30px;
         font-weight: bold;
-        
+        box-shadow: inset 0 -10px 0  $BNAshadowBlue;
+        height: 90px;
     }
     
     .enviar:active{
         background-color: rgb(54, 114, 145);
+        box-shadow: inset 0 -13px 0  $BNAblue;
     }
     
     
