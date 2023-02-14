@@ -9,7 +9,6 @@ import QuizPage from './pages/QuizPage/QuizPage'
 import {initializeApp} from "firebase/app"
 
 function App() {
-
   const firebaseConfig = {
     apiKey: "AIzaSyAjaKM6iwRtR2xGkfOx_DUzhzAphvkcbyY",
     authDomain: "nacionseguros-3662a.firebaseapp.com",

@@ -98,6 +98,21 @@ export default function FormPage(props) {
     }
   }
 
+  let timeoutId;
+  let clics = 0;
+
+  function secretButton(){
+    clics += 1;
+    timeoutId = setTimeout(()=>{
+      clics = 0
+    }, 1000);
+    if(clics >= 3){
+      clics = 0
+      clearTimeout(timeoutId);
+      closeOpenUpload();
+    }
+  }
+
   function closeOpenUpload(){
     setUploadText("")
     open ? setOpen(false) : setOpen(true) 
@@ -130,7 +145,7 @@ export default function FormPage(props) {
           </div>
         </div>
         } 
-        <button onClick={closeOpenUpload} className="hidenButton"></button>
+        <button onClick={secretButton} className="hidenButton"></button>
 
         <div>
           <img className="logo" src={logoBlanco} alt="logo blanco" />
