@@ -1,3 +1,10 @@
+$BNAblue: rgb(0 92 178);
+$BNAshadowBlue: rgb(0, 66, 127);
+$BNAlightBlue: rgb(69 143 180);
+$BNAshadowLightBlue: rgb(55, 115, 146);
+
+$BorderRadius: 10px;
+
 @font-face {
     font-family: 'KievitOT';
     src: url('../../fonts/KievitOT-Regular.otf') format('truetype');
@@ -56,6 +63,7 @@
             height: 50px;
             padding-left: 10px;
             outline: none;
+            border-radius: $BorderRadius;
         }
     
         input:focus{
@@ -72,6 +80,7 @@
             padding-left: 10px;
             outline: none;
             color: black !important;
+            border-radius: $BorderRadius;
     
             option{
                 background-color: white;
@@ -98,6 +107,7 @@
             height: 30px;
             margin-left: 20px;
             margin-top: 7%;
+            border-radius: calc($BorderRadius - 5px);
         }
     
         input:checked{
@@ -110,24 +120,33 @@
         }
     
     }
-    
-    .enviar{
-        display: block;
+    .sendButton{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-content:flex-end;
+        margin-top: 30px;
+        height: 80px;
+
+        .enviar{
         font-size: 40px;
         color: white;
-        background-color: rgb(69 143 180);
+        background-color: $BNAlightBlue;
         border-style: none;
         padding: 1% 5%;
-        margin-top: 30px;
         font-weight: bold;
-        box-shadow: inset 0 -10px 0  $BNAshadowBlue;
-        height: 90px;
+        box-shadow: inset 0 -10px 0  $BNAshadowLightBlue;
+        height: 80px;
+        border-radius: $BorderRadius;
+        }
+    
+        .enviar:active{
+            box-shadow: inset 0 -10px 0 $BNAlightBlue;
+            height: 70px;
+        }
     }
     
-    .enviar:active{
-        background-color: rgb(54, 114, 145);
-        box-shadow: inset 0 -13px 0  $BNAblue;
-    }
+    
     
     
     #error{
@@ -173,6 +192,7 @@
             padding: 1% 5%;
             margin-top: 5%;
             font-weight: bold;
+            border-radius: $BorderRadius;
         }
     }
     
@@ -197,7 +217,7 @@
             right: 0;
             bottom: 0;
             margin: auto;
-            background-color: rgb(69 143 180);
+            background-color: $BNAlightBlue;
             color: white;
             text-align: center;
             width: fit-content;
@@ -230,6 +250,7 @@
             margin-top: 5%;
             font-weight: bold;
             bottom: 0;
+            border-radius: $BorderRadius;
         }
     
         .upload:active{
@@ -256,6 +277,7 @@
             padding-left: 10px;
             padding-top: 5px;
             padding-bottom: 5px;
+            border-radius: $BorderRadius;
         }
     
         input:focus{
