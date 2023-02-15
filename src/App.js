@@ -41,7 +41,7 @@ function App() {
     return array;
   }
 
-  const [section, setSection] = useState(1);
+  const [section, setSection] = useState(2);
   const [theme, setTheme] = useState(0);
 
   const handleSection = (page) => {
