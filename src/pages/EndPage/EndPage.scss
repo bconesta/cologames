@@ -1,0 +1,38 @@
+$BNAblue: rgb(0 92 178);
+$BNAshadowBlue: rgb(0, 66, 127);
+$BNAlightBlue: rgb(69 143 180);
+
+@font-face {
+    font-family: 'KievitOT';
+    src: url('../../fonts/KievitOT-Regular.otf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+
+.end-page{
+    background-color: $BNAblue;
+    height: 100vh;
+    color: white;
+
+    .logo{
+        width: 40%;
+        margin-top: 6%;
+    }
+
+    .text{
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100%;
+        top:0;
+        left:0;
+
+        h2{
+            font-size: 60px;
+        }
+    }
+    
+
+}
