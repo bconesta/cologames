@@ -19,6 +19,9 @@ export default function FormPage(props) {
   const [pend, setPend] = useState(0);
   const [pass, setPass] = useState("");
   const [open, setOpen] = useState(false);
+
+  let warningRed = "rgb(119, 9, 9)"
+  let successGreen = "rgba(167, 242, 162)"
   
   //Lista de provincias 
   const provincias = ['Buenos Aires', 'CABA', 'Catamarca', 'Chaco', 'Chubut', 'Cordoba', 'Corrientes', 'Entre Rios', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquen', 'Rio Negro', 'Salta', 'San Luis', 'Santa Cruz', 'Santa Fe', 'Santiago del Estero', 'Tierra del Fuego']
@@ -56,8 +59,8 @@ export default function FormPage(props) {
   function timeout(){
     return new Promise(resolve => {
       timerId = setTimeout(() => {
-        navigator.onLine ? setUploadText("Ocurrio un error, intentá de nuevo") : setUploadText("No estas conectado a una red WiFi")
-        setColor({color : 'rgb(119, 9, 9)'})
+        setUploadText("Ocurrio un error, intentá de nuevo")
+        setColor({color : warningRed})
       }, 5000)
     })
   }
@@ -69,7 +72,7 @@ export default function FormPage(props) {
     update(ref(db), updates).then(()=>{
       localStorage.clear();
       setUploadText("¡Datos subidos con exito!")
-      setColor({color : "rgba(167, 242, 162)"})
+      setColor({color : successGreen})
       setPend(0)
       clearTimeout(timerId)
     })
@@ -79,30 +82,52 @@ export default function FormPage(props) {
     const password = "Nacionseguros2023"
     if(pass === password){
         if(localStorage.getItem("data") != null){ //Comprueba datos vacios
-          const data = localStorage.getItem("data").split("$").slice(1);
-          data.forEach(obj=>{
-            pushFb(JSON.parse(obj));
-          })
-          setUploadText("Subiendo datos...")
-          setColor({color: "rgba(255, 255, 255)"})
-          await timeout()
+          if(navigator.onLine){
+            const data = localStorage.getItem("data").split("$").slice(1);
+            data.forEach(obj=>{
+              pushFb(JSON.parse(obj));
+            })
+            setUploadText("Subiendo datos...")
+            setColor({color: "white"})
+            await timeout()
+          }
+          else{
+            setUploadText("No estas conectado a una red WiFi")
+            setColor({color: warningRed})
+          }
         }
         else{
           setUploadText("No hay datos para subir")
-          setColor({color: "rgb(119, 9, 9)"})
+          setColor({color: warningRed})
         }  
     }
     else{
       setUploadText("Contraseña incorrecta")
-      setColor({color: "rgb(119, 9, 9)"})
+      setColor({color: warningRed})
+    }
+  }
+
+  let timeoutId;
+  let clics = 0;
+
+  function secretButton(){
+    clics += 1;
+    timeoutId = setTimeout(()=>{
+      clics = 0
+    }, 1000);
+    if(clics >= 2){
+      clics = 0
+      clearTimeout(timeoutId);
+      closeOpenUpload();
     }
   }
 
   function closeOpenUpload(){
-    setUploadText("")
-    open ? setOpen(false) : setOpen(true) 
-    const data = localStorage.getItem("data") ? localStorage.getItem("data").split("$").slice(1) : ""
-    setPend(data.length)
+    setUploadText("");
+    setPass("");
+    open ? setOpen(false) : setOpen(true);
+    const data = localStorage.getItem("data") ? localStorage.getItem("data").split("$").slice(1) : "" ;
+    setPend(data.length);
   }
   
   return (
@@ -130,7 +155,7 @@ export default function FormPage(props) {
           </div>
         </div>
         } 
-        <button onClick={closeOpenUpload} className="hidenButton"></button>
+        <button onClick={secretButton} className="hidenButton"></button>
 
         <div>
           <img className="logo" src={logoBlanco} alt="logo blanco" />
@@ -169,7 +194,9 @@ export default function FormPage(props) {
             <h2>¿Deseas recibir newsletters?</h2>
             <input type="checkbox" id="newsletter" value={news} onChange={(e)=>{setNews(e.target.checked)}}></input>
         </div>
-        <button onClick={submit} className="enviar">ENVIAR</button>
+        <div className='sendButton'>
+          <button onClick={submit} className="enviar">ENVIAR</button>
+        </div>
       </center>
     </div>
   )
