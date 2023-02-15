@@ -14,8 +14,29 @@
     }
 
     .confetti{
-        z-index: 999 !important;
+        z-index: 0 !important;
     }
+    .text{
+        position: absolute;
+        bottom : 3%;
+        font-size: 200%;
+        animation: text-animation linear 1s infinite;
+    }
+
 }
 
+@keyframes text-animation {
+    0%{
+        font-size: 220%;
+        bottom : 3%;
+    }
+    50%{
+        font-size: 250%;
+        bottom: 2.5%;
+    }
+    100%{
+        font-size: 220%;
+        bottom : 3%;
+    }
+}
 

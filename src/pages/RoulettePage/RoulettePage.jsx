@@ -7,7 +7,7 @@ import ReactConfetti from "react-confetti"
 
 export default function RoulettePage(props) {
     //Los elementos tienen que ser diferentes
-    const elements = ["Auto", "Tecno", "Alquiler"]
+    const elements = ["Auto", "Tecno", "Alquiler", "Tecnología"]
 
     const [index, setIndex] = useState(0);
     const [text, setText] = useState("¡Toca para jugar!");
@@ -32,18 +32,18 @@ export default function RoulettePage(props) {
 
     return (
         <div className='page'>
-            <ReactConfetti run={confetti} numberOfPieces={200} class="confetti" tweenDuration={10000}/>
+            <ReactConfetti run={confetti} numberOfPieces={200} className="confetti" tweenDuration={10000}/>
             <div className="logo">
                 <img src={Logo} alt="nacion logo" />
             </div>
             <Roulette 
-            size="45%" 
+            size="65%" 
             elements={elements} 
             turns={20} time={10} 
             handleIndex={handleIndex}
             logo={Icono}
             />
-            <h1 style={{position : "absolute", bottom : '5%'}}>{text}</h1>
+            <h1 className="text">{text}</h1>
         </div>
     )
 }

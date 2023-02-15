@@ -4,7 +4,7 @@ import './Roulette.scss'
 export default function Roulette(props) {
     const colors = ["#FEA700", "#C35AF4", "#F04B1D", "#B3E544", "#10A2ED", "#0DB06D", "#E4D729", "#E93A7B"]
     const size = (props.size[props.size.length-1] === '%' ? 
-        (Number(props.size.replace("%", ""))/100) * window.innerWidth : 
+        (Number(props.size.replace("%", ""))/100) * window.innerHeight : 
         Number(props.size.replace("p", "").replace("x", ""))
     );
     const num = props.elements.length;
@@ -33,25 +33,22 @@ export default function Roulette(props) {
     }
     
     function rotate(){
-        const position = Math.random()*(num-1)
+        const position = Math.random()*(num-0.5)
         const angle = position*(360/num)
         function ended(element){
             element.style.rotate = props.turns*360+angle+'deg'
             props.handleIndex(Math.round(position))
         }
-        document.querySelectorAll(".roulette").forEach(element =>{
-            element.animate([
-                // fotogramas clave
-                { rotate: 0+'deg' },
-                { rotate: props.turns*360+angle+'deg' }
-                ], {
-                // opciones de sincronización
-                duration: props.time*1000,
-                easing: 'ease-out',
-                iterations: 1,
-                complete: ended(element)
-                });
-        })
+        document.querySelector("#wheel").animate([
+            { rotate: 0+'deg' },
+            { rotate: props.turns*360+angle+'deg' }
+            ], {
+            duration: props.time*1000,
+            easing: 'ease-out',
+            iterations: 1,
+            complete: ended(document.querySelector("#wheel"))
+            }
+        );        
     }
         
     return (
@@ -59,13 +56,13 @@ export default function Roulette(props) {
             <button className='center' style={centerStyles.center} onClick={() =>{rotate();rotate()}}><img src={props.logo} alt="" /><div className='line' style={centerStyles.triangle}></div></button>
             <div className='shadow' style={{width : (size-20)+"px", height: (size-20)+"px"}}></div>
             <div className='container' style={{width : size, height: size}}></div>
-            <div style={{width : size, height: size}}>
+            <div style={{width : size, height: size}} id="wheel">
                 {props.elements.map(element => {
                     const aux = props.elements.indexOf(element, 0)
                     return(
                         <div key={aux} className='roulette' style={{width : size, height: size, transform : "rotate("+(360-triangleAngle*aux)+"deg)"}}>
                             <div className='triangle' style={triangle(colors[aux])}></div>
-                            <h1>{element}</h1>
+                            <h1 style={{right: element.length >= 8 ? '8%' : '13%', fontSize: size*0.065 + 'px'}}>{element}</h1>
                         </div>
                     )
                 })}
