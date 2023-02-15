@@ -10,7 +10,6 @@ import {initializeApp} from "firebase/app"
 import questionsJson from './pages/QuizPage/questions.json'
 
 function App() {
-
   const firebaseConfig = {
     apiKey: "AIzaSyAjaKM6iwRtR2xGkfOx_DUzhzAphvkcbyY",
     authDomain: "nacionseguros-3662a.firebaseapp.com",

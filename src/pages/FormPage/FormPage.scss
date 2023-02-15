@@ -1,3 +1,16 @@
+$BNAblue: rgb(0 92 178);
+$BNAshadowBlue: rgb(0, 66, 127);
+$BNAlightBlue: rgb(69 143 180);
+$BNAshadowLightBlue: rgb(55, 115, 146);
+
+$BorderRadius: 10px;
+$InputWidth: 90%;
+$InputHeight: 50px;
+$LogoSize: 40%;
+$LabelSize: 30px;
+$InputTextSize: 20px;
+
+
 @font-face {
     font-family: 'KievitOT';
     src: url('../../fonts/KievitOT-Regular.otf') format('truetype');
@@ -7,7 +20,6 @@
 
 .form-page{
     *{
-        background-color: rgb(0 92 178);
         font-family: "KievitOT";
         overflow: hidden;
     }
@@ -15,7 +27,7 @@
     height: 100vh;
 
     .logo{
-        width: 40%;
+        width: $LogoSize;
         margin-top: 6%;
     }
     
@@ -25,7 +37,7 @@
     
     .table-container{
         margin-top: 7%;
-        font-size: 30px;
+        font-size: $LabelSize;
         color: white;
         display: inline-flex;
         width: 80%;
@@ -50,13 +62,14 @@
         }
     
         input{
-            font-size: 20px;
+            font-size: $InputTextSize;
             background-color: white;
             border-style: none;
-            width: 90%;
-            height: 50px;
+            width: $InputWidth;
+            height: $InputHeight;
             padding-left: 10px;
             outline: none;
+            border-radius: $BorderRadius;
         }
     
         input:focus{
@@ -65,13 +78,15 @@
         
     
         select{
-            font-size: 20px;
+            font-size: $InputTextSize;
             background-color: white;
             border-style: none;
-            width: 93%;
-            height: 50px;
+            width: calc($InputWidth + 3%);
+            height: $InputHeight;
             padding-left: 10px;
             outline: none;
+            color: black !important;
+            border-radius: $BorderRadius;
     
             option{
                 background-color: white;
@@ -84,6 +99,7 @@
     .newsletter{
         margin-top: 2%;
         display: inline-flex;
+        align-items: center;
     
         h2{
             font-size: 30px;
@@ -94,36 +110,49 @@
             appearance: none;
             background-color: white;
             border-style: none;
-            border-color: rgb(69 143 180);
-            width: 30px;
-            height: 30px;
+            width: $LabelSize;
+            height: $LabelSize;
             margin-left: 20px;
-            margin-top: 6%;
+            border-radius: calc($BorderRadius - 5px);
         }
     
         input:checked{
-            border-style: solid;
-            background-color: rgba(255, 255, 255, 0.212);
-            border-color: rgb(255, 255, 255);
-            border-width: 5px;
+            appearance: none;
+            background-color: white !important;
+            background: url("../../img/logos/tick.svg") no-repeat 0 0;
+            background-size: 70%;
+            background-position: center;
+            border-style: none;
         }
     
     }
-    
-    .enviar{
-        display: block;
+    .sendButton{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-content:flex-end;
+        margin-top: 30px;
+        height: 80px;
+
+        .enviar{
         font-size: 40px;
         color: white;
-        background-color: rgb(69 143 180);
+        background-color: $BNAlightBlue;
         border-style: none;
         padding: 1% 5%;
-        margin-top: 30px;
         font-weight: bold;
+        box-shadow: inset 0 -10px 0  $BNAshadowLightBlue;
+        height: 80px;
+        border-radius: $BorderRadius;
+        }
+    
+        .enviar:active{
+            box-shadow: inset 0 -10px 0 $BNAlightBlue;
+            height: 70px;
+        }
     }
     
-    .enviar:active{
-        background-color: rgb(54, 114, 145);
-    }
+    
     
     
     #error{
@@ -149,12 +178,12 @@
             width: fit-content;
             height: fit-content;
             padding: 40px;
-            border-radius: 15px;
+            border-radius: $BorderRadius;
         }
     
         h3{
             background-color: rgba(95, 158, 160, 0) !important;
-            font-size: 30px;
+            font-size: $LabelSize;
             margin-top: 0;
             padding-top: 20px;
             padding-left: 10px;
@@ -162,13 +191,14 @@
         }
     
         button{
-            font-size: 30px;
+            font-size: $LabelSize;
             color: rgb(0, 0, 0);
             background-color: rgb(255, 255, 255);
             border-style: none;
             padding: 1% 5%;
             margin-top: 5%;
             font-weight: bold;
+            border-radius: $BorderRadius;
         }
     }
     
@@ -193,7 +223,7 @@
             right: 0;
             bottom: 0;
             margin: auto;
-            background-color: rgb(69 143 180);
+            background-color: $BNAlightBlue;
             color: white;
             text-align: center;
             width: fit-content;
@@ -218,7 +248,7 @@
         }
     
         .upload{
-            font-size: 30px;
+            font-size: $LabelSize;
             color: rgb(0, 0, 0);
             background-color: rgb(255, 255, 255);
             border-style: none;
@@ -226,6 +256,7 @@
             margin-top: 5%;
             font-weight: bold;
             bottom: 0;
+            border-radius: $BorderRadius;
         }
     
         .upload:active{
@@ -252,6 +283,7 @@
             padding-left: 10px;
             padding-top: 5px;
             padding-bottom: 5px;
+            border-radius: $BorderRadius;
         }
     
         input:focus{
@@ -280,8 +312,8 @@
         right: 0;
         background-color: rgba(255, 0, 0, 0);
         border-style: none;
-        height: 5%;
-        width: 5%;
+        height: 10%;
+        width: 8%;
         z-index: 5;
     }
 
