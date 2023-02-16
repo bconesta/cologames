@@ -2,12 +2,12 @@
     [
         {
             "tittle" : "Pregunta 1 Auto",
-            "option" : ["Opción 1", "Opción 2", "Opción 3", "Opción 4"],
+            "option" : ["Opción 11", "Opción 21", "Opción 31", "Opción 41"],
             "correct" : 2
         },
         {
             "tittle" : "Pregunta 2 Auto",
-            "option" : ["Opción 1", "Opción 2", "Opción 3", "Opción 4"],
+            "option" : ["Opción 12", "Opción 22", "Opción 32", "Opción 42"],
             "correct" : 0
         },
         {
