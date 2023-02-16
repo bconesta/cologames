@@ -1,5 +1,11 @@
+$BNAblue: rgb(0 92 178);
+$BNAshadowBlue: rgb(0, 66, 127);
+$BNAlightBlue: rgb(69 143 180);
+$BNAshadowLightBlue: rgb(55, 115, 146);
+$BorderRadius: 10px;
+
 .page{
-    height: 100vh;
+    height: 92vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,4 +18,50 @@
             width: 100%;
         }
     }
+
+    .confetti{
+        z-index: 0 !important;
+    }
+    .text{
+        position: absolute;
+        bottom : 5%;
+        font-size: 200%;
+        animation: text-animation linear 1s infinite;
+    }
+    .enviar{
+        font-size: 40px;
+        color: white;
+        background-color: $BNAblue;
+        border-style: none;
+        padding: 1% 5%;
+        font-weight: bold;
+        box-shadow: inset 0 -10px 0  $BNAshadowBlue;
+        height: 80px;
+        border-radius: $BorderRadius;
+        position: absolute;
+        bottom : 5%;
+        display: flex;
+        }
+    
+        .enviar:active{
+            box-shadow: inset 0 -10px 0 $BNAlightBlue;
+            height: 70px;
+        }
+
 }
+
+@keyframes text-animation {
+    0%{
+        font-size: 220%;
+        bottom : 3%;
+    }
+    50%{
+        font-size: 250%;
+        bottom: 2.5%;
+    }
+    100%{
+        font-size: 220%;
+        bottom : 3%;
+    }
+}
+
