@@ -91,4 +91,15 @@ $BNAlightBlue: rgb(69 143 180);
             height: 80px;
         }
     }
+
+    @media (max-height: 810px) {
+        .options-container{
+            button{
+                margin-bottom: 5%;
+            }
+        }
+        .question-container{
+            margin-bottom: 80px;
+        }
+    }
 }

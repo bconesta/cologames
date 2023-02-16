@@ -10,24 +10,22 @@ export default function RoulettePage(props) {
     const elements = ["Auto", "Tecno", "Alquiler", "Tecnología"]
 
     const [index, setIndex] = useState(0);
-    const [text, setText] = useState("¡Toca para jugar!");
+    const [text, setText] = useState(true);
+    const [button, setButton] = useState(false);
     const [confetti, setConfetti] = useState(false);
 
     function handleIndex(i){
         setIndex(i)
         props.handleTheme(i)
-        setText("")
+        setText(false)
         nextPage()
     }
 
     async function nextPage(){
         await setTimeout(()=>{
-            setConfetti(true)
+            setConfetti(true);
+            setButton(true);
         }, 10000)
-        await setTimeout(()=>{
-            props.handleSection(2)
-            setConfetti(false)
-        }, 15000)
     }
 
     return (
@@ -43,7 +41,12 @@ export default function RoulettePage(props) {
             handleIndex={handleIndex}
             logo={Icono}
             />
-            <h1 className="text">{text}</h1>
+            {text && <h1 className="text">¡Toca para jugar!</h1>}
+            {button && 
+                <button className='enviar' onClick={()=>{props.handleSection(2)}}>
+                    Continuar
+                </button>
+            }
         </div>
     )
 }

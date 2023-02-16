@@ -17,19 +17,21 @@
         height: 0;
         position: absolute;
         z-index: 4;
-        .line-shadow{
-            width: 0;
-            height: 0;
-            position: absolute;
-            z-index: 4;
-        }
+    }
+    .shadow-line{
+        width: 0;
+        height: 0;
+        position: absolute;
+        z-index: 2;
+        border-left-color: #004A87 !important;
+        top: 26%;
     }
 }
 .container{
     position: absolute;
     z-index: 3;
     border-radius: 50%;
-    border: #005cb2 solid 25px;
+    border: #005cb2 solid;
     box-shadow: 0px 6px #004A87;
 }
 .shadow{
@@ -58,5 +60,20 @@
         z-index: 2;
         position: absolute;
         font-size: 33px;
+    }
+    .selected{
+        animation: selected linear 1s infinite;
+    }
+}
+
+@keyframes selected {
+    0%{
+        filter: brightness(100%);
+    }
+    50%{
+        filter: brightness(150%);
+    }
+    100%{
+        filter: brightness(100%);
     }
 }
