@@ -22,7 +22,7 @@ function App() {
 
   const app = initializeApp(firebaseConfig)
 
-  const [section, setSection] = useState(0);
+  const [section, setSection] = useState(2);
 
   const [theme, setTheme] = useState(0);
 
@@ -34,15 +34,24 @@ function App() {
     setTheme(r);
   }
 
-  /*const questions = questionsJson.forEach((element)=>{
-    shuffle(element)
-  })*/
+  function randomize(cant){
+    let array = [];
+    let i = 0;
+    while(array.length<cant){
+      const num = Math.floor(Math.random()*cant)
+      if(!array.includes(num)){
+        array.push(num)
+      }
+    }
+    console.log("hola")
+    return(array)
+  }
 
   return (
     <div className="App">      
       {section === 0 && <FormPage app={app} handleSection={handleSection} />}
       {section === 1 && <RoulettePage handleSection={handleSection} handleTheme={handleTheme} />}
-      {section === 2 && <QuizPage handleSection={handleSection} theme={theme} />}
+      {section === 2 && <QuizPage handleSection={handleSection} theme={theme} order={randomize(questionsJson[theme].length)}/>}
       {section === 3 && <EndPage handleSection={handleSection} />}
     </div>
   );

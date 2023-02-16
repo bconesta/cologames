@@ -69,11 +69,11 @@ $BNAlightBlue: rgb(69 143 180);
     .options-container{
         display: flex;
         width: 80%;
+        position: absolute;
+        left: 10%;
         flex-wrap: wrap;
         justify-content: space-between;
         align-items: end;
-        margin: 0 auto;
-    
         button{
             background-color: $BNAblue;
             border-style: none;
@@ -90,6 +90,11 @@ $BNAlightBlue: rgb(69 143 180);
             box-shadow: inset 0 -13px 0  $BNAblue;
             height: 80px;
         }
+
+        button:disabled{
+            box-shadow: inset 0 -10px 0  $BNAshadowBlue;
+            height: 90px;
+        }
     }
 
     @media (max-height: 810px) {
@@ -101,5 +106,23 @@ $BNAlightBlue: rgb(69 143 180);
         .question-container{
             margin-bottom: 80px;
         }
+    }
+}
+
+@keyframes slide {
+    0%{
+        left: 10%;
+    }
+    50%{
+        left: -150%;
+    }
+    55%{
+        bottom: -120%;
+    }
+    60%{
+        left: 150%;
+    }
+    100%{
+        left: 10%
     }
 }
