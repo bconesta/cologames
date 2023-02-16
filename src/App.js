@@ -23,6 +23,7 @@ function App() {
   const app = initializeApp(firebaseConfig)
 
   const [section, setSection] = useState(0);
+
   const [theme, setTheme] = useState(0);
 
   const handleSection = (page) => {
